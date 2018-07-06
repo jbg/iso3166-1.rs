@@ -33,34 +33,34 @@ use std::num::ParseIntError;
 
 /// Container for the data of each Country Code defined by ISO 3166-1,
 #[derive(Clone, Debug)]
-pub struct CountryCode<'a> {
+pub struct CountryCode {
     /// Two-character Alpha2 code
-    pub alpha2: &'a str,
+    pub alpha2: &'static str,
     /// Three-character Alpha3 code
-    pub alpha3: &'a str,
+    pub alpha3: &'static str,
     /// English short name of the country
-    pub name: &'a str,
+    pub name: &'static str,
     /// NUmeric code of the country
-    pub num: &'a str,
+    pub num: &'static str,
 }
 
 /// Returns the CountryCode with the given Alpha2 code if one exists.
-pub fn alpha2<'a>(alpha2: &str) -> Option<CountryCode<'a>> {
+pub fn alpha2<'a>(alpha2: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.alpha2 == alpha2)
 }
 
 /// Returns the CountryCode with the given Alpha3 code if one exists.
-pub fn alpha3<'a>(alpha3: &str) -> Option<CountryCode<'a>> {
+pub fn alpha3<'a>(alpha3: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.alpha3 == alpha3)
 }
 
 /// Returns the CountryCode with the given name if one exists.
-pub fn name<'a>(name: &str) -> Option<CountryCode<'a>> {
+pub fn name<'a>(name: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.name == name)
 }
 
 /// Returns the CountryCode with the given number of one exists.
-pub fn num<'a>(num: &str) -> Option<CountryCode<'a>> {
+pub fn num<'a>(num: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.num == num)
 }
 
@@ -93,9 +93,9 @@ pub fn num<'a>(num: &str) -> Option<CountryCode<'a>> {
 /// ```
 /// let countries = iso3166_1::num_range(None, None);
 /// ```
-pub fn num_range<'a>(from: Option<&str>,
-                     to: Option<&str>)
-                     -> Result<Vec<CountryCode<'a>>, ParseIntError> {
+pub fn num_range(from: Option<&str>,
+                 to: Option<&str>)
+                 -> Result<Vec<&'static CountryCode>, ParseIntError> {
     let from_do = from.is_some();
     let to_do = to.is_some();
     let from_val = try!(from.unwrap_or("0").parse::<i16>());
