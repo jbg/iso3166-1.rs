@@ -45,22 +45,22 @@ pub struct CountryCode {
 }
 
 /// Returns the CountryCode with the given Alpha2 code if one exists.
-pub fn alpha2<'a>(alpha2: &str) -> Option<&CountryCode> {
+pub fn alpha2(alpha2: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.alpha2 == alpha2)
 }
 
 /// Returns the CountryCode with the given Alpha3 code if one exists.
-pub fn alpha3<'a>(alpha3: &str) -> Option<&CountryCode> {
+pub fn alpha3(alpha3: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.alpha3 == alpha3)
 }
 
 /// Returns the CountryCode with the given name if one exists.
-pub fn name<'a>(name: &str) -> Option<&CountryCode> {
+pub fn name(name: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.name == name)
 }
 
 /// Returns the CountryCode with the given number of one exists.
-pub fn num<'a>(num: &str) -> Option<&CountryCode> {
+pub fn num(num: &str) -> Option<&CountryCode> {
     all().into_iter().find(|c| c.num == num)
 }
 
