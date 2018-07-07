@@ -99,8 +99,8 @@ pub fn num_range(
 ) -> Result<Vec<&'static CountryCode>, ParseIntError> {
     let from_do = from.is_some();
     let to_do = to.is_some();
-    let from_val = try!(from.unwrap_or("0").parse::<i16>());
-    let to_val = try!(to.unwrap_or("0").parse::<i16>());
+    let from_val = from.unwrap_or("0").parse::<i16>()?;
+    let to_val = to.unwrap_or("0").parse::<i16>()?;
 
     Ok(all().into_iter().filter(|code| {
         let num_as_int = code.num.parse::<i16>().unwrap();
