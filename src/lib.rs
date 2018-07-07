@@ -93,9 +93,10 @@ pub fn num(num: &str) -> Option<&CountryCode> {
 /// ```
 /// let countries = iso3166_1::num_range(None, None);
 /// ```
-pub fn num_range(from: Option<&str>,
-                 to: Option<&str>)
-                 -> Result<Vec<&'static CountryCode>, ParseIntError> {
+pub fn num_range(
+    from: Option<&str>,
+    to: Option<&str>,
+) -> Result<Vec<&'static CountryCode>, ParseIntError> {
     let from_do = from.is_some();
     let to_do = to.is_some();
     let from_val = try!(from.unwrap_or("0").parse::<i16>());
@@ -106,15 +107,14 @@ pub fn num_range(from: Option<&str>,
         let gte = num_as_int >= from_val;
         let lte = num_as_int <= to_val;
 
-        {
-            if from_do && to_do {
-                gte && lte
-            } else if from_do {
-                gte
-            } else if to_do {
-                lte
-            } else {
-                false
-            }
-        }}).collect())
+        if from_do && to_do {
+            gte && lte
+        } else if from_do {
+            gte
+        } else if to_do {
+            lte
+        } else {
+            false
+        }
+    }).collect())
 }
