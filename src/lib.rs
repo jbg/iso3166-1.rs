@@ -25,13 +25,18 @@
 //
 // Originally by zeyla on GitHub.
 
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
+
 mod codes;
 
 pub use codes::all;
 
 use std::num::ParseIntError;
 
-/// Container for the data of each Country Code defined by ISO 3166-1,
+/// Container for the data of each Country Code defined by ISO 3166-1.
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Clone, Debug)]
 pub struct CountryCode {
     /// Two-character Alpha2 code
