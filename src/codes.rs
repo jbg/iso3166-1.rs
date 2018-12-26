@@ -296,7 +296,7 @@ pub const ALL: [CountryCode; 249] = [
     CountryCode {
         alpha2: "TW",
         alpha3: "TWN",
-        name: "Taiwan, Province of China[a]",
+        name: "Taiwan",
         num: "158",
     },
     CountryCode {
